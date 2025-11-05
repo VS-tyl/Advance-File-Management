@@ -1,0 +1,17 @@
+{
+    "file" : "Upload the file",
+    "file_type" : "Hr document",
+    "metadata_schema": {
+    "description": "str",
+    "budget": "int",
+    "is_active": "bool",
+    "tags": "list"
+  },
+  "metadata_value": {
+    "description": "Hr doc for budget",
+    "budget": 210000,
+    "is_active": "true",
+    "tags": "[\"Hr\", \"Budget\"]"
+  }
+
+}
