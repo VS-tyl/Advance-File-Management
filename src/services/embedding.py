@@ -4,8 +4,7 @@ import google.generativeai as genai
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
-genai.configure(api_key="AIzaSyA2bOlspOJe457rIqecJCVGCmLYv4T3MdA")
-# client =  genai.Client(api_key="AIzaSyA2bOlspOJe457rIqecJCVGCmLYv4T3MdA")
+genai.configure(api_key="gemini-api-key")
 
 def extract_text(file_name: str, raw_data: bytes) -> str:
     try:
