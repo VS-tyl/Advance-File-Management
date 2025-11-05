@@ -163,16 +163,6 @@ async def upload_file(
             }
         )
 
-    # #create folder if not exists and save file
-    # import os
-    # import aiofiles
-    # folder_path = os.path.join("src/uploads", folder_path) if folder_path else "src/uploads"
-    # os.makedirs(folder_path, exist_ok=True)
-    # file_path = os.path.join(folder_path, file.filename)
-    # async with aiofiles.open(file_path, "wb") as f:
-    #     await f.write(await file.read())
-
-    # save_metadata(file_path, validated_metadata)
 
     raw_data = await file.read()
     encrypted_data = encrypt_file(raw_data)
@@ -217,24 +207,6 @@ from sqlalchemy import text
 from pgvector import Vector as PgVector
 from sqlalchemy import select
 from google.generativeai import embed_content
-# @router.get("/search/")
-# async def search_files(query: str, session: AsyncSession = Depends(get_db)):
-#     q_emb = embed_content(model="gemini-embedding-001", content=query, output_dimensionality=768)["embedding"]
-
-#     stmt = (
-#         select(
-#             FileEmbedding.file_id,
-#             FileEmbedding.chunk_text,
-#             (1 - FileEmbedding.embedding.l2_distance(q_emb)).label("similarity")
-#         )
-#         .order_by(FileEmbedding.embedding.l2_distance(q_emb))
-#         .limit(5)
-#     )
-#     result = await session.execute(stmt)
-#     rows = result.mappings().all()
-#     response = [dict(r) for r in rows]
-#     return response
-
 
 @router.get("/search/")
 async def search_files(query: str, file_type: str | None=Query(default=None), session: AsyncSession = Depends(get_db)):
@@ -275,38 +247,3 @@ async def search_files(query: str, file_type: str | None=Query(default=None), se
     rows = result.mappings().all()
     return [dict(r) for r in rows]
     
-    
-# @router.post("/upload")
-# async def upload(file: UploadFile = File(...),
-#                  file_type: str = Form(...),
-#                  metadata_schema: str = Form(...),
-#                  metadata_value: str = Form(...)):
-    
-#     schema: Dict[str, str] = json.loads(metadata_schema)
-#     value: Dict[str, Any] = json.loads(metadata_value)
-#     errors = {}
-#     validated_metadata = {}
-    
-#     validation_service = ValidationService()
-
-#     for field, dtype in schema.items():
-#         dtype = dtype.strip().lower()
-#         value_field = value.get(field, "")
-#         if dtype not in ALLOWED_TYPES:
-#             errors[field] = f"Unsupported type '{dtype}' for field '{field}'."
-#             continue
-#         try:
-#             validated_metadata[field] = validation_service.check_type(dtype, value_field)
-#         except Exception:
-#             errors[field] = f"Invalid value '{value_field}' for field '{field}' of type '{dtype}'."
-    
-#     if errors:
-#         return {"success": False, "errors": errors}
-    
-#     return {
-#         "success": True,
-#         "file_name": file.filename,
-#         "file_type": file_type,
-#         "metadata": validated_metadata,
-#         "timestamp": datetime.now().isoformat()
-#     }
