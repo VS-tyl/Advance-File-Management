@@ -1,0 +1,35 @@
+.git
+.gitignore
+.gemini
+.cursor
+
+# Python caches
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+
+# Node
+**/node_modules
+**/.next
+**/dist
+**/build
+
+# Env files (secrets) — NEVER ship into images
+**/.env
+**/.env.local
+!**/.env.example
+!**/.env.local.example
+
+# Logs
+**/*.log
+
+# Python virtual envs
+venv
+.venv
+
+# Docs not needed in images
+README.md
+RUNNING.md
+docker-compose*.yml

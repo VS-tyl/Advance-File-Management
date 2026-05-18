@@ -1,0 +1,19 @@
+# Development overrides — hot-reload and exposed ports for debugging.
+# Usage: docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+services:
+  postgres:
+    ports:
+      - "5432:5432"   # Expose DB for local tools (pgAdmin, DBeaver, etc.)
+
+  backend:
+    ports:
+      - "8000:8000"   # Direct backend access for debugging
+    command:
+      [
+        "uvicorn", "src.main:app",
+        "--host", "0.0.0.0", "--port", "8000",
+        "--reload",
+        "--proxy-headers", "--forwarded-allow-ips=*",
+      ]
+    volumes:
+      - ./src:/app/src   # Hot-reload on source changes

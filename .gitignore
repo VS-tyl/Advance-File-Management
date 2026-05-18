@@ -1,0 +1,86 @@
+# ----------------------
+# ENV / SECRETS
+# ----------------------
+.env
+.env.*
+*.env
+!.env.example
+!**/.env.example
+!**/.env.local.example
+
+# ----------------------
+# PYTHON / FASTAPI
+# ----------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Python tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ----------------------
+# NODE / NEXT.JS
+# ----------------------
+node_modules/
+.next/
+out/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ----------------------
+# DATABASE
+# ----------------------
+*.sqlite3
+*.db
+
+# Postgres (local dumps/backups)
+*.sql
+*.dump
+
+# ----------------------
+# IDE / EDITOR
+# ----------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# ----------------------
+# OS FILES
+# ----------------------
+Thumbs.db
+
+# ----------------------
+# DOCKER (if used)
+# ----------------------
+docker-compose.override.yml
+
+# ----------------------
+# MISC
+# ----------------------
+*.log
+tmp/
+temp/

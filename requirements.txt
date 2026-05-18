@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+pydantic
+python-multipart
+jsonschema
+python-dotenv
+sqlalchemy
+asyncpg
+pgvector
+cryptography
+google-generativeai
+groq
+PyPDF2
+python-docx
+openpyxl
+pandas
+semchunk
